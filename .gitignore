@@ -1,5 +1,11 @@
 target
 
+# Eclipse files
+.classpath
+.project
+.settings
+
+
 # IntelliJ files
 .idea
 *.iml

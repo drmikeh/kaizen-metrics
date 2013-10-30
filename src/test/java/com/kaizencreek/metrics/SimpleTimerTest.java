@@ -4,12 +4,16 @@ import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
 public class SimpleTimerTest {
 
-	private static final double TOLERANCE_FACTOR = 0.10;	// 10%
+    private static final Logger logger = LoggerFactory.getLogger(SimpleTimerTest.class);
+
+    private static final double TOLERANCE_FACTOR = 0.10;	// 10%
 
     private Random randomGenerator = new Random(System.currentTimeMillis());
 
@@ -80,7 +84,7 @@ public class SimpleTimerTest {
         doSomeWork(simpleTimer, numTasks, meanLatency - delta, meanLatency + delta);
 
         // then: "We should be able to measure the throughput"
-        System.out.println(String.format("Throughput = %s", simpleTimer.getThroughput(numTasks)));
+        logger.info(String.format("Throughput = %s", simpleTimer.getThroughput(numTasks)));
         double expectedThroughput = 1000.0 / meanLatency;       // throughput = 1 / meanLatency (converted to seconds)
         double tolerance = expectedThroughput * TOLERANCE_FACTOR;
         Assert.assertEquals(simpleTimer.getThroughput(numTasks), expectedThroughput, tolerance);
@@ -103,12 +107,12 @@ public class SimpleTimerTest {
         double timeRemaining = (totalTasks - numTasks) * meanLatency;
         double tolerance = timeRemaining * TOLERANCE_FACTOR;
         Duration eta = simpleTimer.getETA(numTasks, totalTasks);
-        System.out.println("eta = " + eta);
+        logger.info("eta = " + eta);
             Assert.assertEquals(eta.getMillis(), timeRemaining, tolerance);
 
         DateTime etaTime = simpleTimer.getETATime(numTasks, totalTasks);
         long currentMillis = System.currentTimeMillis();
-        System.out.println("etaTime = " + etaTime);
+        logger.info("etaTime = " + etaTime);
         Assert.assertEquals(etaTime.getMillis(), currentMillis + timeRemaining, tolerance);
     }
 
@@ -119,5 +123,4 @@ public class SimpleTimerTest {
             Thread.sleep(randomWaitMillis);
         }
     }
-
 }

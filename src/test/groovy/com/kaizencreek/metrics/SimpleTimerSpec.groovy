@@ -13,7 +13,7 @@ class SimpleTimerSpec extends Specification {
 
     protected def TOLERANCE_FACTOR = 0.10      // 10%
 
-    def "test unstartedTimer"() {
+    def "test an unstarted Timer"() {
         given: "A SimpleTimer that has not been started"
         def simpleTimer = new SimpleTimer();
 
@@ -26,7 +26,7 @@ class SimpleTimerSpec extends Specification {
         simpleTimer.getThroughput(0) == 0
     }
 
-    def "test startedTimer"() {
+    def "test a started Timer"() {
         given: "A SimpleTimer that has been started"
         def simpleTimer = new SimpleTimer().start()
 
@@ -34,7 +34,7 @@ class SimpleTimerSpec extends Specification {
         simpleTimer.getStartTime() > 0
     }
 
-    def "test endedTimer"() {
+    def "test an ended Timer"() {
         given: "A SimpleTimer that has ended after 200ms"
         def simpleTimer = new SimpleTimer().start()
         def sleepTime = 200L
@@ -49,7 +49,7 @@ class SimpleTimerSpec extends Specification {
         println("elapsed time = " + simpleTimer.getDuration().getMillis())
     }
 
-    def "test reset"() {
+    def "test resetting a Timer"() {
         given: "A SimpleTimer that has been reset"
 
         when:
@@ -68,7 +68,7 @@ class SimpleTimerSpec extends Specification {
         simpleTimer.getThroughput(0) == 0
     }
 
-    def "test throughput meanLatency"() {
+    def "test throughput and meanLatency"() {
         given: "A SimpleTimer that has been started"
         SimpleTimer simpleTimer = new SimpleTimer().start()
 

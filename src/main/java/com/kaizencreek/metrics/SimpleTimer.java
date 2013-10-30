@@ -172,7 +172,6 @@ public class SimpleTimer {
     }
 
     protected static String durationToString(Duration duration) {
-        String formatted = formatter.print(duration.toPeriod());
-        return formatted;
+        return formatter.print(duration.toPeriod());
     }
 }

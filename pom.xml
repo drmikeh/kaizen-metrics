@@ -10,6 +10,33 @@
     <name>metrics</name>
     <url>http://maven.apache.org</url>
 
+    <organization>
+        <name>Kaizen Creek</name>
+        <url>http://www.kaizencreek.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://raw.github.com/drmikeh/kaizen-metrics/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system />
+        <url />
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>drmikeh</id>
+            <name>Michael Hopper</name>
+            <email>drmikeh@gmail.com</email>
+            <timezone>-6</timezone>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -18,8 +45,16 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <!-- 2.8.0-01 and later require maven-compiler-plugin 3.0 or higher -->
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- groovy-eclipse plugin 2.8.0-01 and later require maven-compiler-plugin 3.0 or higher -->
                 <version>3.1</version>
                 <configuration>
                     <compilerId>groovy-eclipse-compiler</compilerId>
@@ -64,6 +99,11 @@
             <version>2.1</version>
         </dependency>
         <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.5</version>
@@ -85,7 +125,7 @@
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
-            <version>1.0-groovy-2.0-SNAPSHOT</version>
+            <version>0.7-groovy-2.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
